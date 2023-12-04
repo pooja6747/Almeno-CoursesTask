@@ -2,22 +2,24 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 const CourseList = () => {
-    const [data,setData]=useState([]);
 
-    useEffect(()=>{
-        const url=`http://localhost:4000/api/course`;
-        fetch(url)
-        .then((res)=>res.json())
-        .then((response)=>{
-            setData(response);
-        })
-        console.log("data",data)
-    },[])
+    const dispatch = useDispatch()
+    const data = useSelector(state => state.course)
+    console.log(data, "data")
+
+
 
     return (
-      <>
-      <h1>Check list</h1>
-      </>
+        <>
+            <div className="container">
+                <h1>Alemno Institute </h1>
+                <div className="row">
+                    <div className="col-md-4"></div>
+                    <div className="col-md-4"></div>
+                    <div className="col-md-4"></div>
+                </div>
+            </div>
+        </>
     )
 }
 

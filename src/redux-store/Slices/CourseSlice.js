@@ -18,21 +18,25 @@ export const CourseSlice = createSlice({
     initialState: {
         isLoading: false,
         data: [],
-        error: false
+        error: null
     },
-    extraReducers: {
-        [fetchCourse.pending]: (state, action) => {
-            state.isLoading = true
-        },
-        [fetchCourse.fulfilled]: (state, action) => {
-            state.isLoading = false;
-            state.data = action.payload
-        },
-        [fetchCourse.rejected]: (state, action) => {
-            state.isLoading = false;
-            state.data = action.payload
-        }
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchCourse.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(fetchCourse.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.data = action.payload;
+                console.log("action.payload", action.payload)
+            })
+            .addCase(fetchCourse.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = action.error.message;
+            })
     }
+
 })
 
 

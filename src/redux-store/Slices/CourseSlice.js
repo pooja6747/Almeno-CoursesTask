@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 
 export const fetchCourse = createAsyncThunk("fetchCourse", async () => {
-    const res = await fetch(`http://localhost:4000/api/course`);
+    const res = await fetch('https://coursedetails-api-service.onrender.com/api/course');
     try {
         const result = await res.json()
         return result
